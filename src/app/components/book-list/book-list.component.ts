@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [MatTableModule], // Ensure MatTableModule is imported
+  imports: [MatTableModule, RouterModule], 
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.css']
 })
@@ -17,16 +18,16 @@ export class BookListComponent implements OnInit {
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.getBooks(); // Fetch books when the component initializes
+    this.getBooks(); 
   }
 
   getBooks(): void {
     this.bookService.getBooks().subscribe(
       (data) => {
-        this.books = data; // Assign fetched data to the books array
+        this.books = data; 
       },
       (error) => {
-        console.error('Error fetching books:', error); // Log any errors
+        console.error('Error fetching books:', error); 
       }
     );
   }
