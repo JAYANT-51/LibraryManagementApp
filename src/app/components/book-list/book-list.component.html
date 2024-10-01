@@ -1,7 +1,12 @@
 <h1>Book List</h1>
-<a routerLink="/books/add">Add Book</a>
 
-<input type="text" placeholder="Search books" #searchInput (input)="searchBooks(searchInput.value)" />
+<div style="margin-bottom: 20px;">
+  <a routerLink="/books/add">Add Book</a>
+</div>
+
+<div style="margin-bottom: 20px;">
+  <input type="text" placeholder="Search books" #searchInput (input)="searchBooks(searchInput.value)" />
+</div>
 
 <mat-table [dataSource]="books" class="mat-elevation-z8">
   <ng-container matColumnDef="bookID">
