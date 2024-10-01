@@ -35,10 +35,10 @@ export class BookListComponent implements OnInit {
   }
   addBook(): void {
     if (this.newBook.title && this.newBook.author && this.newBook.totalCopies > 0) {
-      this.newBook.availableCopies = this.newBook.totalCopies; // Initialize available copies
+      this.newBook.availableCopies = this.newBook.totalCopies; 
       this.bookService.addBook(this.newBook).subscribe(
         (data) => {
-          this.books.push(data); // Add the new book to the list
+          this.books.push(data); 
           this.newBook = { bookID: 0, title: '', author: '', totalCopies: 1, availableCopies: 1 }; // Reset form
         },
         (error) => {
@@ -55,22 +55,22 @@ export class BookListComponent implements OnInit {
   }
 
   issueBook(bookId: number): void {
-    const userId = this.authService.getUserId(); // Get the logged-in user's ID dynamically
+    const userId = this.authService.getUserId(); 
 
-    if (userId !== null) { // Ensure user ID is available
+    if (userId !== null) { 
       this.bookService.issueBook(bookId, userId).subscribe({
         next: (response) => {
           console.log('Book issued successfully', response);
           alert('Book issued successfully!');
-          this.getBooks(); // Refresh the book list
+          this.getBooks(); 
         },
         error: (err) => {
           console.error('Error issuing book', err);
-          alert('Failed to issue the book.'); // Error feedback
+          alert('Failed to issue the book.'); 
         }
       });
     } else {
-      alert('User ID not found. Please log in to issue a book.'); // Feedback if user ID is not available
+      alert('User ID not found. Please log in to issue a book.'); 
     }
   }
 
@@ -78,12 +78,12 @@ export class BookListComponent implements OnInit {
     this.bookService.returnBook(bookId).subscribe({
       next: (response) => {
         console.log('Book returned successfully', response);
-        alert('Book returned successfully!'); // Feedback on successful return
-        this.getBooks(); // Refresh the book list after return
+        alert('Book returned successfully!'); 
+        this.getBooks(); 
       },
       error: (err) => {
         console.error('Error returning book', err);
-        alert('Failed to return the book.'); // Error feedback
+        alert('Failed to return the book.'); 
       }
     });
   }

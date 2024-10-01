@@ -46,7 +46,7 @@ export class BookService {
   }
 
   returnBook(issueId: number): Observable<void> {
-    const url = `${this.issueApiUrl}/ReturnBook?issueId=${issueId}`; // Construct the URL with query parameter
-    return this.http.post<void>(url, {}); // Send an empty object as the body of the PUT request
+    const url = `${this.issueApiUrl}/ReturnBook?issueId=${issueId}`; 
+    return this.http.post<void>(url, {}); 
   }
 }
